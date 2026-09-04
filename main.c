@@ -1,7 +1,40 @@
 #include "header.h"
+#include <ctype.h>
+
+/* Check whether the string contains only digits.
+   '-' is allowed only at the first position. */
+int is_digit(char *str)
+{
+    int i = 0;
+
+    if (str[0] == '\0')
+        return 0;
+
+    /* Allow negative number */
+    if (str[0] == '-')
+    {
+        i = 1;
+
+        /* Only '-' is not a valid number */
+        if (str[1] == '\0')
+            return 0;
+    }
+
+    for (; str[i] != '\0'; i++)
+    {
+        if (!isdigit((unsigned char)str[i]))
+            return 0;
+    }
+
+    return 1;
+}
 
 int main(int argc, char *argv[])
 {
+    char *n1;
+    char *n2;
+    char op;
+
     Dlist *head1 = NULL;
     Dlist *tail1 = NULL;
 
@@ -11,27 +44,35 @@ int main(int argc, char *argv[])
     Dlist *headR = NULL;
     Dlist *tailR = NULL;
 
-    /* Validate command line arguments */
+    /* Check command line arguments */
     if (argc != 4)
     {
         printf("Usage: %s <number1> <operator> <number2>\n", argv[0]);
         printf("Example: %s 1234 + 567\n", argv[0]);
-        return 1;
+        return 0;
     }
 
-    /* Store numbers in linked lists */
-    store_number(&head1, &tail1, argv[1]);
-    store_number(&head2, &tail2, argv[3]);
+    /* Get values from command line */
+    n1 = argv[1];
+    op = argv[2][0];
+    n2 = argv[3];
 
-    /* Operator is the first character of argv[2] */
-    char op = argv[2][0];
+    /* Validate numbers */
+    if (!is_digit(n1) || !is_digit(n2))
+    {
+        printf("Invalid input: Enter numbers only\n");
+        return 0;
+    }
 
-    /* Check whether operator is valid */
-    if (argv[2][1] != '\0')
+    /* Validate operator */
+    if (op != '+' && op != '-')
     {
         printf("Invalid operator\n");
-        return 1;
+        return 0;
     }
+
+    store_number(&head1, &tail1, n1);
+    store_number(&head2, &tail2, n2);
 
     switch (op)
     {
@@ -58,13 +99,8 @@ int main(int argc, char *argv[])
             print_list(headR);
             break;
         }
-
-        default:
-            printf("Invalid operator\n");
-            return 1;
     }
 
-    /* Free all allocated memory */
     free_list(&head1, &tail1);
     free_list(&head2, &tail2);
     free_list(&headR, &tailR);

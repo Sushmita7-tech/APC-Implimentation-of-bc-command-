@@ -24,17 +24,12 @@ void store_number(Dlist **head, Dlist **tail, char *str);
 int compare(Dlist *head1, Dlist *head2);
 
 /* Arithmetic Functions */
-void addition(Dlist *tail1, Dlist *tail2,
-              Dlist **headR, Dlist **tailR);
+void addition(Dlist *tail1, Dlist *tail2,Dlist **headR, Dlist **tailR);
 
-void subtraction(Dlist *head1, Dlist *tail1,
-                 Dlist *head2, Dlist *tail2,
-                 Dlist **headR, Dlist **tailR);
+void subtraction(Dlist *head1, Dlist *tail1,Dlist *head2, Dlist *tail2,Dlist **headR, Dlist **tailR);
 
-void multiplication(Dlist *tail1, Dlist *tail2,
-                    Dlist **headR, Dlist **tailR);
+void multiplication(Dlist *tail1, Dlist *tail2,Dlist **headR, Dlist **tailR);
 
-void division(Dlist *head1, Dlist *head2,
-              Dlist **headR, Dlist **tailR);
+void division(Dlist *head1, Dlist *head2,Dlist **headR, Dlist **tailR);
 
 #endif

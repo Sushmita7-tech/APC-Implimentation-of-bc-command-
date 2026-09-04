@@ -1,8 +1,7 @@
 #include "header.h"
 
 /* ADDITION */
-void addition(Dlist *tail1, Dlist *tail2,
-              Dlist **headR, Dlist **tailR)
+void addition(Dlist *tail1, Dlist *tail2,Dlist **headR, Dlist **tailR)
 {
     int carry = 0;
 
@@ -40,9 +39,7 @@ void addition(Dlist *tail1, Dlist *tail2,
 
 
 /* SUBTRACTION */
-void subtraction(Dlist *head1, Dlist *tail1,
-                 Dlist *head2, Dlist *tail2,
-                 Dlist **headR, Dlist **tailR)
+void subtraction(Dlist *head1, Dlist *tail1,Dlist *head2, Dlist *tail2,Dlist **headR, Dlist **tailR)
 {
     int borrow = 0;
 
