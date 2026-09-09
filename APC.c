@@ -90,6 +90,19 @@ void free_list(Dlist **head, Dlist **tail)
 
 int compare(Dlist *head1, Dlist *head2)
 {
+    // Remove leading zeros from first number
+    while (head1 && head1->data == 0)
+        head1 = head1->next;
+
+    // Remove leading zeros from second number
+    while (head2 && head2->data == 0)
+        head2 = head2->next;
+
+    // Both numbers are zero
+    if (head1 == NULL && head2 == NULL)
+        return 0;
+
+    // Find lengths after removing leading zeros
     int len1 = 0;
     int len2 = 0;
 
@@ -108,12 +121,14 @@ int compare(Dlist *head1, Dlist *head2)
         temp2 = temp2->next;
     }
 
+    // Compare number of digits
     if (len1 > len2)
         return 1;
 
     if (len1 < len2)
         return -1;
 
+    // Same number of digits → compare digit by digit
     while (head1 && head2)
     {
         if (head1->data > head2->data)

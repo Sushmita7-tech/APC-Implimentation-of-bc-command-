@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
     }
 
     /* Validate operator */
-    if (op != '+' && op != '-')
+    if (op != '+' && op != '-' && op!='/' && op!='x')
     {
         printf("Invalid operator\n");
         return 0;
@@ -87,9 +87,7 @@ int main(int argc, char *argv[])
         {
             int negative = (compare(head1, head2) < 0);
 
-            subtraction(head1, tail1,
-                        head2, tail2,
-                        &headR, &tailR);
+            subtraction(head1, tail1,head2, tail2,&headR, &tailR);
 
             printf("Result = ");
 
@@ -99,7 +97,53 @@ int main(int argc, char *argv[])
             print_list(headR);
             break;
         }
+        case 'x':
+        {
+        int sign = 1;
+
+        if (n1[0] == '-')
+            sign *= -1;
+
+        if (n2[0] == '-')
+            sign *= -1;
+
+        multiplication(tail1, tail2,&headR, &tailR);
+
+        printf("Result = ");
+
+        if (sign < 0)
+            printf("-");
+
+        print_list(headR);
+        break;
+        }
+        case '/':
+        {
+            
+        int sign = 1;
+
+        if (n1[0] == '-')
+            sign *= -1;
+
+        if (n2[0] == '-')
+            sign *= -1;
+
+        division(head1, head2,&headR, &tailR);
+
+        printf("Result = ");
+
+        if (sign < 0 && !(headR && headR->data == 0 && headR->next == NULL))
+        printf("-");
+
+        print_list(headR);
+        break;
     }
+
+        default:
+            printf("Invalid operator\n");
+            return 0;
+    }
+    
 
     free_list(&head1, &tail1);
     free_list(&head2, &tail2);

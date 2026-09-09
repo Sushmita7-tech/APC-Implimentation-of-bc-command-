@@ -23,6 +23,7 @@ void free_list(Dlist **head, Dlist **tail);
 void store_number(Dlist **head, Dlist **tail, char *str);
 int compare(Dlist *head1, Dlist *head2);
 
+
 /* Arithmetic Functions */
 void addition(Dlist *tail1, Dlist *tail2,Dlist **headR, Dlist **tailR);
 
